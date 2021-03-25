@@ -1,23 +1,33 @@
-import logo from './logo.svg';
+// import css file
 import './App.css';
 
+// Importing AppBar and ToolBar from material UI
+import AppBar from '@material-ui/core/AppBar'
+import ToolBar from '@material-ui/core/Toolbar'
+
+// import state
+import { useState } from 'react';
+
+// import two components 
+import UserLogin from './components/UserLogin'
+import Dashboard from './components/Dashboard'
+
 function App() {
+    // 12.5pts - Uses the Boolean value of state.loggedIn to display Login Screen, uses App Bar Component.
+    const [loggedIn, setLoggedIn] = useState(false)
+
+  const handleLogin = () => {
+    setLoggedIn(true)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <AppBar>
+          <ToolBar>
+          Will's Music App
+          </ToolBar>
+        </AppBar>
+        { loggedIn ? <Dashboard /> : <UserLogin handleLogin={() => handleLogin()} />}
     </div>
   );
 }
